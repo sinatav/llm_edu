@@ -1,13 +1,9 @@
 import requests
-import re
 import char_level_tokenizer as clt
+from ..data_load import read_shakespear
 
+text = read_shakespear()
 
-url = 'https://storage.googleapis.com/download.tensorflow.org/data/shakespeare.txt'
-response = requests.get(url)
-text = response.text
-
-# words = re.findall(r'\b\w+\b', text.lower())
 chars = clt.get_vocab(text)
 
 stoi = clt.get_stoi(chars)
