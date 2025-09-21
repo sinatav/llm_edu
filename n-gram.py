@@ -19,6 +19,8 @@ def predict_next(probs):
     max_value = max(probs.values())
     return [(k, v) for k, v in probs.items() if v == max_value]
 
+def translate(lot, itos):
+    return [(itos[t[0]], t[1]*100) for t in lot]
 
 
 # data = "je m\'appelle Sina et je suis en train de travailler"
@@ -29,4 +31,5 @@ itos = clt.get_itos(vocab)
 encoded = clt.encode(data, stoi)
 counts = build_bigram_counts(encoded)
 probs = get_probs(stoi['a'], counts)
-print(predict_next(probs))
+nxt = predict_next(probs)
+print(translate(nxt, itos))
